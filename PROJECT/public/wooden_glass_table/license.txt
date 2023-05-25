@@ -1,0 +1,11 @@
+Model Information:
+* title:	wooden glass table
+* source:	https://sketchfab.com/3d-models/wooden-glass-table-9fc235927e18414bb21ff24d9d5b9d78
+* author:	Kalim (https://sketchfab.com/creshex)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "wooden glass table" (https://sketchfab.com/3d-models/wooden-glass-table-9fc235927e18414bb21ff24d9d5b9d78) by Kalim (https://sketchfab.com/creshex) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
