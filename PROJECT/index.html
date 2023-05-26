@@ -2,18 +2,13 @@
 <html lang="en">
 
 <head>
-    <title>three.js - misc - octree collisions</title>
+    <title>Proyek GrafKom</title>
     <meta charset=utf-8 />
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link type="text/css" rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <div id="info">
-        Octree threejs demo - basic collisions with static triangle mesh<br />
-        MOUSE to look around and to throw balls<br />
-        WASD to move and SPACE to jump
-    </div>
     <div id="container"></div>
 
     <!-- Import maps polyfill -->
@@ -413,8 +408,9 @@
         }
 
         const loader = new GLTFLoader()
-
-        loader.load('./public/loft_baked/scene.gltf', (gltf) => {
+     
+        // Loft
+        loader.load('./LoftNoDoor/LoftNoDoor.gltf', (gltf) => {
 
             scene.add(gltf.scene);
 
@@ -436,6 +432,14 @@
                 }
 
             });
+
+            // Floor
+            var geometry = new THREE.PlaneGeometry( 1000, 1000, 1, 1 );
+            var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+            var floor = new THREE.Mesh( geometry, material );
+            floor.material.side = THREE.DoubleSide;
+            floor.rotation.x = 100;
+            scene.add( floor );
 
             const helper = new OctreeHelper(worldOctree);
             helper.visible = false;
