@@ -49,6 +49,7 @@
 	<script type="module">
 		// Import
 		import * as THREE from 'three';
+        import { Octree } from 'three/addons/math/Octree.js'
 		import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 		import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
 
@@ -66,6 +67,9 @@
 		const direction = new THREE.Vector3();
 		const vertex = new THREE.Vector3();
 		const color = new THREE.Color();
+
+        const worldOctree = new Octree()
+        const boxBoundary = new THREE.Box3(new THREE.Vector3(-100, -100, -100), new THREE.Vector3(100, 100, 100)); // Ganti dengan batas kotak yang sesuai
 
 		const objects = [];
 
@@ -93,12 +97,17 @@
 			//// Sofa
 			var loader = new GLTFLoader();
 			loader.load(
-				'public/loft_baked/scene.gltf',
+				'/LoftNoDoor/LoftNoDoor.gltf',
 				function (gltf) {
-					// Tambah ke array object untuk cek collision
-					objects.push(gltf.scene)
 					// Tambah ke scene
 					scene.add(gltf.scene);
+                    objects.push(gltf.scene);
+                    // Tambah object model ke worldOctree
+                    gltf.scene.traverse(function (node) {
+                    if (node.isMesh) {
+                        worldOctree.addTriangle(node);
+                    }
+                    });
 				}, undefined, function (error) {
 					console.error(error);
 				}
@@ -199,6 +208,9 @@
 		function animate() {
 			requestAnimationFrame(animate);
 
+            // Perbairui WorldOctree
+            // worldOctree.update();
+
 			const time = performance.now();
 			if (controls.isLocked === true) {
 				raycaster.ray.origin.copy(controls.getObject().position);
@@ -235,6 +247,12 @@
 					canJump = true;
 				}
 
+                // Deteksi tabrakan menggunakan WorldOctree
+                // const collisions = worldOctree.collisionRay(controls.getObject().position, direction, 0, Infinity);
+                // if (collisions.length > 0) {
+                //     // Terjadi tabrakan, lakukan sesuatu
+
+                // }
 			}
 			prevTime = time;
 
