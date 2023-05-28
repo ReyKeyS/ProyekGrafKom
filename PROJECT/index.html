@@ -32,8 +32,8 @@
         camera.rotation.order = 'YXZ';
 
         //// LIGHTING
-        const fillLight1 = new THREE.HemisphereLight(0x8dc1de, 0x00668d, 0.5);
-        fillLight1.position.set(2, 1, 1);
+        // const fillLight1 = new THREE.HemisphereLight(0x8dc1de, 0x00668d, 0.5);
+        // fillLight1.position.set(2, 1, 1);
         // scene.add(fillLight1);
 
         const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -49,7 +49,7 @@
         directionalLight.shadow.mapSize.height = 1024;
         directionalLight.shadow.radius = 4;
         directionalLight.shadow.bias = - 0.00006;
-        // scene.add(directionalLight);
+        scene.add(directionalLight);
 
 
 
@@ -178,24 +178,135 @@
             }
         }
 
-        //// FLOOR
-        // const geometry2 = new THREE.PlaneGeometry( 1000, 1000, 1, 1 );
-        // const material = new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('/grass.jpg') });
-        // const floor = new THREE.Mesh( geometry2, material );
-        // floor.position.x=0;
-        // floor.position.y=0;
-        // floor.position.z=0;
-        // worldOctree.fromGraphNode( floor );
-        // scene.add( floor ); 
-
+    
         //// MODELS
         const loader = new GLTFLoader()
-     
+
+        // Sofa
+        loader.load('./modern_sofa/scene.gltf', (gltf) => {
+            const sofa = gltf.scene
+
+            sofa.scale.set(1.6, 1.6, 1.6)
+            sofa.position.set(-0.75, 0.5, -4.4)
+            sofa.rotation.set(0, Math.PI / 2, 0);
+
+            sofa.traverse(child => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    if (child.material.map) {
+                        child.material.map.anisotropy = 4;
+                    }
+                }
+            });
+            
+            worldOctree.fromGraphNode(sofa);
+            scene.add(sofa);
+
+            animate();
+        });
+
+        // TV
+        loader.load('./tv_sony/scene.gltf', (gltf) => {
+            const tv = gltf.scene
+
+            tv.scale.set(1, 1, 1)
+            tv.position.set(2.4, 1.5, -4.4)
+            tv.rotation.set(0, -Math.PI / 6, 0);
+
+            tv.traverse(child => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    if (child.material.map) {
+                        child.material.map.anisotropy = 4;
+                    }
+                }
+            });
+            
+            worldOctree.fromGraphNode(tv);
+            scene.add(tv);
+
+            animate();
+        });
+
+        // Meja
+        loader.load('./wooden_glass_table/scene.gltf', (gltf) => {
+            const meja = gltf.scene
+
+            meja.scale.set(0.8, 0.8, 0.8)
+            meja.position.set(1.4, 0, -3.75)
+            meja.rotation.set(0, Math.PI / 2, 0);
+
+            meja.traverse(child => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    if (child.material.map) {
+                        child.material.map.anisotropy = 4;
+                    }
+                }
+            });
+            
+            worldOctree.fromGraphNode(meja);
+            scene.add(meja);
+
+            animate();
+        });
+
+        // Speaker Kiri
+        loader.load('./speaker/scene.gltf', (gltf) => {
+            const speaker = gltf.scene
+
+            speaker.scale.set(0.0146, 0.0146, 0.0146)
+            speaker.position.set(2.25, 0, -6.51)
+            speaker.rotation.set(0, -Math.PI / 2, 0);
+
+            speaker.traverse(child => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    if (child.material.map) {
+                        child.material.map.anisotropy = 4;
+                    }
+                }
+            });
+            
+            worldOctree.fromGraphNode(speaker);
+            scene.add(speaker);
+
+            animate();
+        });
+
+        // Speaker Kanan
+        loader.load('./speaker/scene.gltf', (gltf) => {
+            const speaker = gltf.scene
+
+            speaker.scale.set(0.0146, 0.0146, 0.0146)
+            speaker.position.set(2.25, 0, -2.2)
+            speaker.rotation.set(0, -Math.PI / 2, 0);
+
+            speaker.traverse(child => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                    if (child.material.map) {
+                        child.material.map.anisotropy = 4;
+                    }
+                }
+            });
+            
+            worldOctree.fromGraphNode(speaker);
+            scene.add(speaker);
+
+            animate();
+        });
+
         // Loft
         loader.load('./LoftNoDoor/LoftNoDoor.gltf', (gltf) => {
             const loft = gltf.scene
 
-            loft.position.set(-3, 0, -1)
+            loft.position.set(-3, 0, -3)
 
             loft.traverse(child => {
                 if (child.isMesh) {
@@ -213,9 +324,10 @@
             animate();
         });
 
-
-
         
+
+
+
         function teleportPlayerIfOob() {
             if (camera.position.y <= - 25) {
                 playerCollider.start.set(0, 0.05, 0);
