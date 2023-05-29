@@ -1,0 +1,11 @@
+Model Information:
+* title:	Props - Neon Lamp
+* source:	https://sketchfab.com/3d-models/props-neon-lamp-8afb141e42824d0e999d6c819adcefe2
+* author:	sawcisson (https://sketchfab.com/sawcisson)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Props - Neon Lamp" (https://sketchfab.com/3d-models/props-neon-lamp-8afb141e42824d0e999d6c819adcefe2) by sawcisson (https://sketchfab.com/sawcisson) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

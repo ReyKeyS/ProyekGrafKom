@@ -1,0 +1,11 @@
+Model Information:
+* title:	Luna Park Grass Field
+* source:	https://sketchfab.com/3d-models/luna-park-grass-field-99e831fdf6d44a549650b6ef26cec9b5
+* author:	Tekla Gedeon (https://sketchfab.com/Extended_Forest)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Luna Park Grass Field" (https://sketchfab.com/3d-models/luna-park-grass-field-99e831fdf6d44a549650b6ef26cec9b5) by Tekla Gedeon (https://sketchfab.com/Extended_Forest) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
