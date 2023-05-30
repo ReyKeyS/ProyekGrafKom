@@ -88,6 +88,26 @@
 
         document.addEventListener('keydown', (event) => {
             keyStates[event.code] = true;
+            if (keyStates['KeyP']) {
+                if (dpnTV && !statPlay){
+                    video.play();
+                    sound.play();
+                    statPlay = true;
+                }else if (dpnTV && statPlay){
+                    video.pause();
+                    sound.pause();
+                    statPlay = false;
+                }
+            }
+            if (keyStates['KeyM']) {
+                if (!keMuted){
+                    sound.setVolume(0);
+                    keMuted = true
+                }else{
+                    sound.setVolume(3);
+                    keMuted = false
+                }
+            }
         });
 
         document.addEventListener('keyup', (event) => {
@@ -652,26 +672,7 @@
                 `;
             }
 
-            if (keyStates['KeyP']) {
-                if (dpnTV && !statPlay){
-                    video.play();
-                    sound.play();
-                    statPlay = true;
-                }else if (dpnTV && statPlay){
-                    video.pause();
-                    sound.pause();
-                    statPlay = false;
-                }
-            }
-            if (keyStates['KeyM']) {
-                if (!keMuted){
-                    sound.setVolume(0);
-                    keMuted = true
-                }else{
-                    sound.setVolume(3);
-                    keMuted = false
-                }
-            }
+            
 
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
