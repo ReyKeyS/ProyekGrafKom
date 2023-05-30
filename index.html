@@ -9,7 +9,12 @@
 </head>
 
 <body>
+    <div id="info">
+        221116988 - Ryan Kohans === 221116972 - Michael Lukas Tjandra <br>
+        MOUSE to look around, WASD to move and SPACE to jump <br>
+    </div>
     <div id="container"></div>
+    <video id="video1"></video>
 
     <script type="module">
 
@@ -50,6 +55,7 @@
 
 
         const container = document.getElementById('container');
+        let info = document.getElementById('info');
 
         const renderer = new THREE.WebGLRenderer({ antialias: true });
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -72,6 +78,7 @@
 
         let playerOnFloor = false;
         let mouseTime = 0;
+        let video, dpnTV = false, statPlay = false, keMuted = false;
 
         const keyStates = {};
 
@@ -90,6 +97,7 @@
         container.addEventListener('mousedown', () => {
             document.body.requestPointerLock();
             mouseTime = performance.now();
+            console.log(camera.position.y)        
         });
 
         document.body.addEventListener('mousemove', (event) => {
@@ -161,6 +169,7 @@
             if (keyStates['KeyD']) {
                 playerVelocity.add(getSideVector().multiplyScalar(speedDelta));
             }
+            
             if (playerOnFloor) {
                 if (keyStates['Space']) {
                     playerVelocity.y = 8;
@@ -245,14 +254,15 @@
         });
 
         // Speaker Kiri
+        let speakerKiri;
         loader.load('./speaker/scene.gltf', (gltf) => {
-            const speaker = gltf.scene
+            speakerKiri = gltf.scene
 
-            speaker.scale.set(0.0146, 0.0146, 0.0146)
-            speaker.position.set(2.25, 0, -6.51)
-            speaker.rotation.set(0, -Math.PI / 2, 0);
+            speakerKiri.scale.set(0.0146, 0.0146, 0.0146)
+            speakerKiri.position.set(2.25, 0, -2.2)
+            speakerKiri.rotation.set(0, -Math.PI / 2, 0);
 
-            speaker.traverse(child => {
+            speakerKiri.traverse(child => {
                 if (child.isMesh) {
                     child.castShadow = true;
                     child.receiveShadow = true;
@@ -262,21 +272,22 @@
                 }
             });
             
-            worldOctree.fromGraphNode(speaker);
-            scene.add(speaker);
+            worldOctree.fromGraphNode(speakerKiri);
+            scene.add(speakerKiri);
 
             animate();
         });
 
         // Speaker Kanan
+        let speakerKanan;
         loader.load('./speaker/scene.gltf', (gltf) => {
-            const speaker = gltf.scene
+            speakerKanan = gltf.scene
 
-            speaker.scale.set(0.0146, 0.0146, 0.0146)
-            speaker.position.set(2.25, 0, -2.2)
-            speaker.rotation.set(0, -Math.PI / 2, 0);
+            speakerKanan.scale.set(0.0146, 0.0146, 0.0146)
+            speakerKanan.position.set(2.25, 0, -6.51)
+            speakerKanan.rotation.set(0, -Math.PI / 2, 0);
 
-            speaker.traverse(child => {
+            speakerKanan.traverse(child => {
                 if (child.isMesh) {
                     child.castShadow = true;
                     child.receiveShadow = true;
@@ -286,8 +297,8 @@
                 }
             });
             
-            worldOctree.fromGraphNode(speaker);
-            scene.add(speaker);
+            worldOctree.fromGraphNode(speakerKanan);
+            scene.add(speakerKanan);
 
             animate();
         });
@@ -566,7 +577,19 @@
         }
         
 
-
+        // Video untuk TV
+        video = document.getElementById('video1')
+        video.currentTime = 43
+        video.src = "./video/JohnWick4.mp4";
+        let videoTexture = new THREE.VideoTexture(video);
+        const geoLayar = new THREE.PlaneGeometry( 2.2255, 1.245 );
+        const matLayar = new THREE.MeshPhongMaterial( {map: videoTexture} );
+        const layar = new THREE.Mesh( geoLayar, matLayar );
+        layar.position.set(2.3675, 1.5275, -4.408)
+        layar.rotation.set(0, -Math.PI / 2, 0)
+        scene.add( layar );    
+    
+       
 
 
         function teleportPlayerIfOob() {
@@ -578,7 +601,7 @@
                 camera.rotation.set(0, 0, 0);
             }
         }
-
+        
         function animate() {
             const deltaTime = Math.min(0.05, clock.getDelta()) / STEPS_PER_FRAME;
             for (let i = 0; i < STEPS_PER_FRAME; i++) {
@@ -601,7 +624,42 @@
             }else{
                 openPintu2 = false
             }
-            bukaPintu2()
+            bukaPintu2();
+
+            // Function TV
+            if (camera.position.x >= 0.15 && camera.position.x <= 0.25  &&  camera.position.z >= -5.6 && camera.position.z <= -3.2){
+                dpnTV = true;
+                info.innerHTML = `
+                    221116988 - Ryan Kohans === 221116972 - Michael Lukas Tjandra <br>
+                    MOUSE to look around, WASD to move and SPACE to jump <br>
+                    P = Play/Pause, M = Mute/Unmute
+                `;
+            }else{
+                dpnTV = false
+                info.innerHTML = `
+                    221116988 - Ryan Kohans === 221116972 - Michael Lukas Tjandra <br>
+                    MOUSE to look around, WASD to move and SPACE to jump <br>
+                `;
+            }
+
+            if (keyStates['KeyP']) {
+                if (dpnTV && !statPlay){
+                    video.play();
+                    statPlay = true;
+                }else if (dpnTV && statPlay){
+                    video.pause();
+                    statPlay = false;
+                }
+            }
+            if (keyStates['KeyM']) {
+                if (!keMuted){
+                    video.muted = true
+                    keMuted = true
+                }else{
+                    video.muted = false
+                    keMuted = false
+                }
+            }
 
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
