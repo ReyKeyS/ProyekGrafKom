@@ -96,8 +96,7 @@
 
         container.addEventListener('mousedown', () => {
             document.body.requestPointerLock();
-            mouseTime = performance.now();
-            console.log(camera.position.y)        
+            mouseTime = performance.now();    
         });
 
         document.body.addEventListener('mousemove', (event) => {
@@ -579,8 +578,9 @@
 
         // Video untuk TV
         video = document.getElementById('video1')
-        video.currentTime = 43
-        video.src = "./video/JohnWick4.mp4";
+        video.src = "./video/cutscene.mp4";
+        video.muted = true;
+        video.loop = true;
         let videoTexture = new THREE.VideoTexture(video);
         const geoLayar = new THREE.PlaneGeometry( 2.2255, 1.245 );
         const matLayar = new THREE.MeshPhongMaterial( {map: videoTexture} );
@@ -589,7 +589,17 @@
         layar.rotation.set(0, -Math.PI / 2, 0)
         scene.add( layar );    
     
-       
+        // Audio Speaker
+        let listener = new THREE.AudioListener();
+        camera.add(listener);
+        let sound = new THREE.PositionalAudio(listener)
+        let loaderAudio = new THREE.AudioLoader().load('./video/audioscene.mp3', (hasil) => {
+            sound.setBuffer(hasil);
+            sound.setLoop(true);
+            sound.setVolume(3);
+        })
+        layar.add(sound)
+        
 
 
         function teleportPlayerIfOob() {
@@ -645,18 +655,20 @@
             if (keyStates['KeyP']) {
                 if (dpnTV && !statPlay){
                     video.play();
+                    sound.play();
                     statPlay = true;
                 }else if (dpnTV && statPlay){
                     video.pause();
+                    sound.pause();
                     statPlay = false;
                 }
             }
             if (keyStates['KeyM']) {
                 if (!keMuted){
-                    video.muted = true
+                    sound.setVolume(0);
                     keMuted = true
                 }else{
-                    video.muted = false
+                    sound.setVolume(3);
                     keMuted = false
                 }
             }
