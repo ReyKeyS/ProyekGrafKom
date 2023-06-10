@@ -202,7 +202,7 @@
         const loader = new GLTFLoader()
 
         // Sofa
-        loader.load('_public/modern_sofa/scene.gltf', (gltf) => {
+        loader.load('public/modern_sofa/scene.gltf', (gltf) => {
             const sofa = gltf.scene
 
             sofa.scale.set(1.6, 1.6, 1.6)
@@ -226,7 +226,7 @@
         });
 
         // TV
-        loader.load('_public/tv_sony/scene.gltf', (gltf) => {
+        loader.load('public/tv_sony/scene.gltf', (gltf) => {
             const tv = gltf.scene
 
             tv.scale.set(1, 1, 1)
@@ -250,7 +250,7 @@
         });
 
         // Meja
-        loader.load('_public/wooden_glass_table/scene.gltf', (gltf) => {
+        loader.load('public/wooden_glass_table/scene.gltf', (gltf) => {
             const meja = gltf.scene
 
             meja.scale.set(0.8, 0.8, 0.8)
@@ -275,7 +275,7 @@
 
         // Speaker Kiri
         let speakerKiri;
-        loader.load('_public/speaker/scene.gltf', (gltf) => {
+        loader.load('public/speaker/scene.gltf', (gltf) => {
             speakerKiri = gltf.scene
 
             speakerKiri.scale.set(0.0146, 0.0146, 0.0146)
@@ -300,7 +300,7 @@
 
         // Speaker Kanan
         let speakerKanan;
-        loader.load('_public/speaker/scene.gltf', (gltf) => {
+        loader.load('public/speaker/scene.gltf', (gltf) => {
             speakerKanan = gltf.scene
 
             speakerKanan.scale.set(0.0146, 0.0146, 0.0146)
@@ -324,7 +324,7 @@
         });
 
         // Bed
-        loader.load('_public/bed/scene.gltf', (gltf) => {
+        loader.load('public/bed/scene.gltf', (gltf) => {
             const bed = gltf.scene
 
             bed.scale.set(1.1, 1.1, 1.1)
@@ -348,7 +348,7 @@
         });
 
         // AC
-        loader.load('_public/air_conditioner/scene.gltf', (gltf) => {
+        loader.load('public/air_conditioner/scene.gltf', (gltf) => {
             const ac = gltf.scene
 
             ac.scale.set(0.1, 0.1, 0.1)
@@ -372,7 +372,7 @@
         });
 
         // Neon
-        loader.load('_public/neon/scene.gltf', (gltf) => {
+        loader.load('public/neon/scene.gltf', (gltf) => {
             const neon = gltf.scene
 
             // neon.scale.set(0.1, 0.1, 0.1)
@@ -396,7 +396,7 @@
         });
 
         // Field Luar
-        loader.load('_public/grass_field/scene.gltf', (gltf) => {
+        loader.load('public/grass_field/scene.gltf', (gltf) => {
             const field = gltf.scene
 
             field.position.set(0, -0.4, 0)
@@ -418,7 +418,7 @@
         });
 
         // Loft
-        loader.load('_public/LoftNoDoor/LoftNoDoorFixed.gltf', (gltf) => {
+        loader.load('public/LoftNoDoor/LoftNoDoorFixed.gltf', (gltf) => {
             const loft = gltf.scene
 
             loft.position.set(-3, 0, -3)
@@ -441,7 +441,7 @@
 
         //// PINTU
         // Kusen Pintu 1
-        loader.load('_public/KusenPintu/KusenPintuPlain.gltf', (gltf) => {
+        loader.load('public/KusenPintu/KusenPintuPlain.gltf', (gltf) => {
             const kusenPintu1 = gltf.scene
 
             kusenPintu1.position.set(-3.02, 0, -6.94)
@@ -462,7 +462,7 @@
             animate();
         });
         // Kusen Pintu 2
-        loader.load('_public/KusenPintu/KusenPintuPlain.gltf', (gltf) => {
+        loader.load('public/KusenPintu/KusenPintuPlain.gltf', (gltf) => {
             const kusenPintu2 = gltf.scene
 
             kusenPintu2.position.set(-3.13, 0, 2.17)
@@ -484,7 +484,7 @@
             animate();
         });
         // Kusen Pintu 3
-        loader.load('_public/KusenPintu/KusenPintuPlain.gltf', (gltf) => {
+        loader.load('public/KusenPintu/KusenPintuPlain.gltf', (gltf) => {
             const kusenPintu3 = gltf.scene
 
             kusenPintu3.position.set(1.105, 0, 3.475)
@@ -508,7 +508,7 @@
 
         // Pintu 1
         let pintu1, openPintu1 = false;
-        loader.load('_public/DaunPintu/DaunPintuPlain.gltf', (gltf) => {
+        loader.load('public/DaunPintu/DaunPintuPlain.gltf', (gltf) => {
             pintu1 = gltf.scene
 
             pintu1.position.set(-2.9, 0, -6.9)
@@ -531,7 +531,7 @@
         });
         // Pintu 2
         let pintu2, openPintu2 = false;
-        loader.load('_public/DaunPintu/DaunPintuPlain.gltf', (gltf) => {
+        loader.load('public/DaunPintu/DaunPintuPlain.gltf', (gltf) => {
             pintu2 = gltf.scene
 
             pintu2.position.set(-3.1, 0, 2.11)
@@ -553,7 +553,7 @@
         });
         // Pintu 3
         let pintu3, openPintu3 = false;
-        loader.load('_public/DaunPintu/DaunPintuPlain.gltf', (gltf) => {
+        loader.load('public/DaunPintu/DaunPintuPlain.gltf', (gltf) => {
             pintu3 = gltf.scene
 
             pintu3.position.set(2.188, 0, 3.55)
@@ -599,7 +599,7 @@
 
         // Video untuk TV
         video = document.getElementById('video1')
-        video.src = "_public/video/cutscene.mp4";
+        video.src = "public/video/cutscene.mp4";
         video.muted = true;
         video.loop = true;
         let videoTexture = new THREE.VideoTexture(video);
@@ -614,7 +614,7 @@
         let listener = new THREE.AudioListener();
         camera.add(listener);
         let sound = new THREE.PositionalAudio(listener)
-        let loaderAudio = new THREE.AudioLoader().load('_public/video/audioscene.mp3', (hasil) => {
+        let loaderAudio = new THREE.AudioLoader().load('public/video/audioscene.mp3', (hasil) => {
             sound.setBuffer(hasil);
             sound.setLoop(true);
             sound.setVolume(3);
